@@ -51,24 +51,21 @@ let bulle2;
 let backgroundS
 let bulle1;
 function preload() {
-	myFont = loadFont('src/assets/Pacifico-Regular.ttf');
-	virus1  = loadImage("src/sprite/virus/herpès.png");
-	virus2  = loadImage("src/sprite/virus/papilloma.png");
-	virus3  = loadImage("src/sprite/virus/sida.png");
+	myFont = loadFont('assets/Pacifico-Regular.ttf');
+	virus1  = loadImage("sprite/virus/herpès.png");
+	virus2  = loadImage("sprite/virus/papilloma.png");
+	virus3  = loadImage("sprite/virus/sida.png");
 	
 	virus = [virus1,virus2,virus3];
-	//load a spirte sheet
 	console.log(spriteSheet)
-	backgroundS1 = loadImage("src/sprite/background.png");
-	backgroundS2 = loadImage("src/sprite/background2.png");
-	backgroundS3 = loadImage("src/sprite/background3.png");
+	backgroundS1 = loadImage("sprite/background.png");
+	backgroundS2 = loadImage("sprite/background2.png");
+	backgroundS3 = loadImage("sprite/background3.png");
 	
 	backgroundS= [backgroundS1,backgroundS2,backgroundS3];
 	
-	//load a json file
-	//Path: sprite.json
-	bulle1 = loadImage("src/sprite/bulle/bulle-8.png");
-	bulle2 = loadImage("src/sprite/bulle/bulle-9.png");
+	bulle1 = loadImage("sprite/bulle/bulle-8.png");
+	bulle2 = loadImage("sprite/bulle/bulle-9.png");
 	
 	
 }
@@ -87,8 +84,8 @@ function setup() {
 	frameRate(30);
 	
 	for (let i = 1; i <=8 ; i++) {
-		perso_sprite.push(loadImage(`src/sprite/personnage/perso-${i}.png`));
-		perso_sprite2.push(loadImage(`src/sprite/personnage/persof-${i}.png`));
+		perso_sprite.push(loadImage(`sprite/personnage/perso-${i}.png`));
+		perso_sprite2.push(loadImage(`sprite/personnage/persof-${i}.png`));
 		
 	}
 	
@@ -120,8 +117,6 @@ function draw() {
 	let tabs = history[idnStory];
 		let tabBackground = backgroundS[idnStory];
 		let tabVirus = virus[idnStory];
-		//update the image at each stroke
-		//draw the image move x and y with frame
 		if (keyIsPressed && moovable) {
 			if (keyCode === keyCodes.LEFT_ARROW) {
 				if (valuex > 0) {
@@ -139,13 +134,10 @@ function draw() {
 			}
 			
 		}
-		//reverse my sprite
-		//black background for 3 seconds
 
 		background(tabBackground);
 		if (keyCode === keyCodes.RIGHT_ARROW) {
 			
-			// If the mouse is not pressed, draw the image as normal
 			image(perso_sprite[frameCount % 8], valuex, 560 + valuey, 200, 200)
 			image(perso_sprite2[frameCount % 8], valuex + 180, 510 + valuey, 180, 180)
 			
@@ -154,15 +146,11 @@ function draw() {
 		if (keyCode === keyCodes.LEFT_ARROW) {
 			
 			
-			// Otherwise, the mouse is pressed. Flip the image.
-			// We will use the scale() transformation to reverse the x-axis.
-			// The push and pop functions save and reset the previous transformation.
+		
 			push();
 			
-			// Scale -1, 1 means reverse the x axis, keep y the same.
 			scale(-1, 1);
 			
-			// Because the x-axis is reversed, we need to draw at different x position.
 			image(perso_sprite[frameCount % 8], -valuex - 100, 560 + valuey, 200, 200)
 			image(perso_sprite2[frameCount % 8], -valuex + 10, 510 + valuey, 180, 180)
 			
@@ -177,11 +165,11 @@ function draw() {
 			moovable = false;
 			if (indiceTexte % 2 === 0 && indiceTexte < tab.length) {
 				image(bulle1, 500, 0, 650, 650);
-				text(tabs[indiceTexte], 640, 250, 400, 400); // Text wraps within text box
+				text(tabs[indiceTexte], 640, 250, 400, 400);
 				
 			} else {
 				image(bulle2, 500, 0, 650, 650);
-				text(tabs[indiceTexte], 640, 250, 400, 400); // Text wraps within text box
+				text(tabs[indiceTexte], 640, 250, 400, 400);
 				
 				
 			}
