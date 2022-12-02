@@ -24,26 +24,34 @@ let tab = ["Oh non ! Un Herpes sauvage apparaît !","Je suis Herpes, un virus r�
 "Effectivement nous te connaissons ! Tu n'es pas très grave, un antiviral suffira à te faire partir! ","Oh non, mon point faible! Je reviendrai..."];
 let tab2 = [" Qui es-tu, louche individu ? ","Je suis un papillomavirus, je peux être responsable de verrues, mais aussi mener au cancer, saurez-vous me battre ? ",
 	"Ne t'inquiètes pas Touffi, une vaccination efficace existe, faisons-la en prévision!"]
+
 let tab3 = ["Voici la plus grosse et la plus connue des MST!" ,"En effet, je suis un simple virus responsable de bien des complications",
 "Tu t'attaques aux défenses immunitaires et provoque le Syndrome d'ImmunoDéficience Acquise, notre corps est moins protégé et tombe donc malade.","Effectivement, ces maladies" +
-	" opportunistes m'aident beaucoup!" ,"Il existe une trithérapie efficace pour te vaincre, elle allonge l'espérance de vie et baisse ta transmissibilité."
+	" opportunistes profitent du SIDA pour s'installer !" ,"Heureusement, Il existe une trithérapie efficace pour te vaincre, elle allonge l'espérance de vie et baisse ta transmissibilité."
+	,"Satané trithérapie! J'ai également peur des vaccins en développement.."
 	];
 let history = [tab,tab2,tab3]
 let valuex = 0;
 let valuey = 0;
 let background1;
 let background2;
+let virus3;
+let virus2;
+let myFont;
+
 let perso_sprite = [];
 let perso_sprite2 = [];
 let virus1;
-let virus2;
 let virus = [];
+let backgroundS1;
+let backgroundS3;
 
 let rover;
 let bulle2;
 let backgroundS
 let bulle1;
 function preload() {
+	myFont = loadFont('src/assets/Pacifico-Regular.ttf');
 	virus1  = loadImage("src/sprite/virus/herpès.png");
 	virus2  = loadImage("src/sprite/virus/papilloma.png");
 	virus3  = loadImage("src/sprite/virus/sida.png");
@@ -88,9 +96,28 @@ function setup() {
 	
 }
 
+function restart() {
+	indiceTexte = 0;
+	idnStory = 0;
+	i_frame = 1;
+	moovable = true;
+	
+}
+
+function changeWord() {
+	background(0);
+}
+
+function intervalID() {
+	background(0);
+}
+
 function draw() {
 	
-		let tabs = history[idnStory];
+	
+	textSize(28)
+	textFont('Pacifico-Regular');
+	let tabs = history[idnStory];
 		let tabBackground = backgroundS[idnStory];
 		let tabVirus = virus[idnStory];
 		//update the image at each stroke
@@ -113,7 +140,8 @@ function draw() {
 			
 		}
 		//reverse my sprite
-		
+		//black background for 3 seconds
+
 		background(tabBackground);
 		if (keyCode === keyCodes.RIGHT_ARROW) {
 			
@@ -148,27 +176,30 @@ function draw() {
 		if (valuex > 200 && indiceTexte < tab.length) {
 			moovable = false;
 			if (indiceTexte % 2 === 0 && indiceTexte < tab.length) {
-				image(bulle1, 500, 0, 600, 600);
-				text(tabs[indiceTexte], 640, 300, 300, 300); // Text wraps within text box
+				image(bulle1, 500, 0, 650, 650);
+				text(tabs[indiceTexte], 640, 250, 400, 400); // Text wraps within text box
 				
 			} else {
-				image(bulle2, 500, 0, 600, 600);
-				text(tabs[indiceTexte], 640, 300, 300, 300); // Text wraps within text box
+				image(bulle2, 500, 0, 650, 650);
+				text(tabs[indiceTexte], 640, 250, 400, 400); // Text wraps within text box
 				
 				
 			}
 			
 			
 		}
-		if (indiceTexte === tab.length) {
-			moovable = true;
+
+	if (indiceTexte === tab.length) {
+		
+		moovable = true;
 			indiceTexte = 0;
 			idnStory++;
+			
 		}
 		
 		textSize(24);
 		
 		fill(1);
-	
+		
 
 }
